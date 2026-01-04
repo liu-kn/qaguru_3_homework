@@ -1,0 +1,52 @@
+[project]
+name = "qa-demo"
+version = "0.1.0"
+requires-python = ">=3.11"
+
+# ----------------------
+# pytest
+# ----------------------
+[tool.pytest.ini_options]
+minversion = "8.0"
+addopts = "-ra -q"
+testpaths = ["test"]
+python_files = ["test_*.py"]
+python_classes = ["Test*"]
+python_functions = ["test_*"]
+markers = [
+  "smoke: быстрые проверки",
+  "ui: UI тесты",
+  "api: API тесты",
+]
+
+# ----------------------
+# black
+# ----------------------
+[tool.black]
+target-version = ["py311"]
+line-length = 88
+exclude = '''
+/(
+  \.git
+| \.venv
+| venv
+| env
+| __pycache__
+| \.pytest_cache
+)/
+'''
+
+# ----------------------
+# isort
+# ----------------------
+[tool.isort]
+profile = "black"
+line_length = 88
+skip = [
+  ".venv",
+  "venv",
+  "env",
+  ".git",
+  "__pycache__",
+  ".pytest_cache",
+]
